@@ -1,5 +1,5 @@
 module.exports = {
-	"db":{
-		"mongo":{ "host":"localhost", "port":"27107", "name":"docbizz1", "username":"mongoadmin", "password":"docbizzadmin"}
-	}
-};
+	_HOME : "~/CV/CV_Processor/",
+	CURRENT_HOME : "~/CV/CV_Processor/",
+	CV_HOME : "~/CV/CV_Processor/images/"
+}

@@ -32,23 +32,25 @@ app.post('/', function (req, res) {
 	debugger;
 	if(req.body.__type__ == "CV_OCR") {
 		debugger;
-		var _HOME = "~/CV/CV_Processor/";
-		var CURRENT_HOME = "~/CV/CV_Processor/";
+		var settings = require("./routes/settings");
+		var _HOME = settings._HOME;
+		var CURRENT_HOME = settings.CURRENT_HOME;
+
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
 		var imgTag = req.body.__tag__;
 		var langModelName = req.body.__model_name__;
 
-		if(req.body.__mode__ == "ocropus") {
-
-			util.ocropyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
+		if(req.body.__mode__ == "tesseract") {
+			util.tesseractifyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
 				var output = result.stdout;
 				res.send(JSON.stringify({ result : true, output : output }));
 			}, function(err) {
 				res.send(JSON.stringify({ result : false }));
 			}).done();
 		}
-		else if(req.body.__mode__ == "tesseract") {
-			util.tesseractifyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
+		else if(req.body.__mode__ == "ocropus") {
+
+			util.ocropyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
 				var output = result.stdout;
 				res.send(JSON.stringify({ result : true, output : output }));
 			}, function(err) {
