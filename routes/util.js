@@ -33,4 +33,25 @@ var ocropyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
 	});
 }
 
-module.exports = { shellExecLine : shellExecLine, ocropyImage : ocropyImage };
+var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
+	var CV_HOME = "~/Desktop/myproj/CV_Processor/images/";
+	var output1 = CV_HOME + "tesseract/" + imgTag + ".tiff";
+	var line1 = "convert " + imgLocation + " -type Grayscale " + output1;
+	debugger;
+	console.log(line1);
+	return shellExecLine(line1).then(function(result) {
+		var line2 = "tesseract " + output1 + " " + CV_HOME + "tesseract/" + imgTag;
+		debugger;
+		console.log(line2);
+		return shellExecLine(line2);
+	}).then(function(result) {
+		debugger;
+		var line5 = "cat" + " " + CV_HOME + "tesseract/" + imgTag + ".txt";
+		console.log(line5);
+		return shellExecLine(line5);
+	});
+}
+
+module.exports = { shellExecLine : shellExecLine,
+ ocropyImage : ocropyImage,
+ tesseractifyImage : tesseractifyImage };

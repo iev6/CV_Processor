@@ -5,8 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var settings = require('./routes/settings');
-var models = require('./routes/models');
 var util = require('./routes/util');
 
 var app = express();
@@ -34,20 +32,32 @@ app.post('/', function (req, res) {
 	debugger;
 	if(req.body.__type__ == "CV_OCR") {
 		debugger;
-		var CURRENT_HOME = "~/Desktop/myproj/Docbizz_Storage/";
+		var _HOME = "~/Desktop/myproj/CV_Processor/";
+		var CURRENT_HOME = "~/Desktop/myproj/CV_Processor/";
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
 		var imgTag = req.body.__tag__;
 		var langModelName = req.body.__model_name__;
 
-		util.ocropyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
-			var output = result.stdout;
-			res.send(JSON.stringify({ result : true, output : output }));
-		}, function(err) {
-			res.send(JSON.stringify({ result : false }));
-		}).done();
+		if(req.body.__mode__ == "ocropus") {
+
+			util.ocropyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
+				var output = result.stdout;
+				res.send(JSON.stringify({ result : true, output : output }));
+			}, function(err) {
+				res.send(JSON.stringify({ result : false }));
+			}).done();
+		}
+		else if(req.body.__mode__ == "tesseract") {
+			util.tesseractifyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
+				var output = result.stdout;
+				res.send(JSON.stringify({ result : true, output : output }));
+			}, function(err) {
+				res.send(JSON.stringify({ result : false }));
+			}).done();
+		}
 	}
 	else {
-		res.end(JSON.stringify({result: true, url:'http://52.74.17.151/uploads/' + req.files.uploadedFile.name}));
+		res.end(JSON.stringify({result: true, url:'http://localhost:3000/uploads/' + req.files.uploadedFile.name}));
 	}
 });
 
