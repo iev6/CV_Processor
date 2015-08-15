@@ -32,8 +32,8 @@ app.post('/', function (req, res) {
 	debugger;
 	if(req.body.__type__ == "CV_OCR") {
 		debugger;
-		var _HOME = "~/Desktop/myproj/CV_Processor/";
-		var CURRENT_HOME = "~/Desktop/myproj/CV_Processor/";
+		var _HOME = "~/CV/CV_Processor/";
+		var CURRENT_HOME = "~/CV/CV_Processor/";
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
 		var imgTag = req.body.__tag__;
 		var langModelName = req.body.__model_name__;

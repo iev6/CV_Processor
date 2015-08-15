@@ -34,7 +34,7 @@ var ocropyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
 }
 
 var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
-	var CV_HOME = "~/Desktop/myproj/CV_Processor/images/";
+	var CV_HOME = "~/CV/CV_Processor/images/";
 	var output1 = CV_HOME + "tesseract/" + imgTag + ".tiff";
 	var line1 = "convert " + imgLocation + " -type Grayscale " + output1;
 	debugger;
