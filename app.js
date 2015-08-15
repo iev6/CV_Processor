@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var util = require('./routes/util');
+var settings = require("./routes/settings");
 
 var app = express();
 
@@ -32,7 +33,6 @@ app.post('/', function (req, res) {
 	debugger;
 	if(req.body.__type__ == "CV_OCR") {
 		debugger;
-		var settings = require("./routes/settings");
 		var _HOME = settings._HOME;
 		var CURRENT_HOME = settings.CURRENT_HOME;
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
