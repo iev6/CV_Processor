@@ -60,12 +60,20 @@ app.post('/', function (req, res) {
 			}).done();
 		}
 	}
-	else if(req.body.__type__ == 'SEE_SHARP") {
+	else if(req.body.__type__ == 'SEE_SHARP') {
 		debugger;
-		var CURRENT_HOME = 0settings.CURRENT_HOME;
+		var CURRENT_HOME = settings.CURRENT_HOME;
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
 		var langModelName = req.body.__model_name__;
-		
+		var seeSharpLocation = "/home/ubuntu/SeeSharpNative/seesharp";
+
+		util.textifyImage(imgLocation, langModelName, seeSharpLocation).then(function(result) {
+			console.log(result);
+			debugger;
+			res.send(JSON.stringify({ result : true, output : result }));
+		}, function(err) {
+			res.send(JSON.stringify({ result : false, err: err }));
+		}).done();
 
 	}
 	else {

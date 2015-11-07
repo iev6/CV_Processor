@@ -3,6 +3,17 @@ var shellExecLine = function(cmdLine) {
 	return exec(cmdLine);
 }
 
+var textifyImage = function(imgLocation, langModelName, seeSharpLocation) {
+	var line1 = seeSharpLocation + " " + imgLocation;
+	// console.log(line1);
+	return shellExecLine(line1).then(function(result) {
+		debugger;
+		var output = result.stdout.split('\n');	
+		output = output.filter(Boolean);
+		return output;
+	});
+}
+
 var ocropyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
 	//var OCROPUS_HOME = "~/CV/ocropy/";
 	var OCROPUS_HOME = "~/Desktop/myproj/ocropy/";
@@ -60,4 +71,5 @@ var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOM
 
 module.exports = { shellExecLine : shellExecLine,
  ocropyImage : ocropyImage,
- tesseractifyImage : tesseractifyImage };
+ tesseractifyImage : tesseractifyImage,
+ textifyImage: textifyImage };

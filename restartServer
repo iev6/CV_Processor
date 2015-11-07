@@ -1,0 +1,1 @@
+sudo forever stop bin/www; sudo TESSDATA_PREFIX=/usr/share/tesseract-ocr/tessdata/ forever start bin/www
