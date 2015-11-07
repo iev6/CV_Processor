@@ -33,7 +33,7 @@ var ocropyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
 	});
 }
 
-var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME) {
+var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOME, req){
 	var CV_HOME = require("./settings").CV_HOME;
 	var output1 = CV_HOME + "tesseract/" + imgTag + ".tiff";
 	var line1 = "convert " + imgLocation + " -type Grayscale " + output1;
@@ -49,6 +49,12 @@ var tesseractifyImage = function(imgLocation, imgTag, langModelName, CURRENT_HOM
 		var line5 = "cat" + " " + CV_HOME + "tesseract/" + imgTag + ".txt";
 		console.log(line5);
 		return shellExecLine(line5);
+	}).then(function(result) {
+		req.__output__ = result.stdout;
+		debugger;
+		var line6 = "rm -rf" + " " + CV_HOME + "tesseract/" + imgTag + ".*";
+		console.log(line6);
+		return shellExecLine(line6);
 	});
 }
 

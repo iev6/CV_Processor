@@ -28,7 +28,7 @@ int main()
 	d.setCreationApproach( STATIC, 10 );	
 
 	//create neural network
-	neuralNetwork nn(16,40,3);
+	neuralNetwork nn(16,10,3);
 
 	//create neural network trainer
 	neuralNetworkTrainer nT( &nn );

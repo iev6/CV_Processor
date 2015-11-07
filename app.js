@@ -31,6 +31,7 @@ app.use(multer({
 
 app.post('/', function (req, res) {
 	debugger;
+	console.log(req.body);
 	if(req.body.__type__ == "CV_OCR") {
 		debugger;
 		var _HOME = settings._HOME;
@@ -41,8 +42,9 @@ app.post('/', function (req, res) {
 		var langModelName = req.body.__model_name__;
 
 		if(req.body.__mode__ == "tesseract") {
-			util.tesseractifyImage(imgLocation, imgTag, langModelName, CURRENT_HOME).then(function(result) {
-				var output = result.stdout;
+			util.tesseractifyImage(imgLocation, imgTag, langModelName, CURRENT_HOME, req).then(function(result) {
+				var output = req.__output__;
+				console.log(output);
 				res.send(JSON.stringify({ result : true, output : output }));
 			}, function(err) {
 				res.send(JSON.stringify({ result : false }));
@@ -57,6 +59,14 @@ app.post('/', function (req, res) {
 				res.send(JSON.stringify({ result : false }));
 			}).done();
 		}
+	}
+	else if(req.body.__type__ == 'SEE_SHARP") {
+		debugger;
+		var CURRENT_HOME = 0settings.CURRENT_HOME;
+		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
+		var langModelName = req.body.__model_name__;
+		
+
 	}
 	else {
 		res.end(JSON.stringify({result: true, url:'http://localhost:3000/uploads/' + req.files.uploadedFile.name}));
