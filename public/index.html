@@ -1,0 +1,15 @@
+<html>
+<head>
+	<script src="js/angular.min.js"></script>
+	<script src="js/ng-file-upload.min.js"></script>
+    <script src="js/ng-file-upload-shim.min.js"></script>
+    <script src="js/file-upload.js"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="myCtrl">
+		<input id="file-input" ngf-max-size="20MB" ngf-pattern="'.jpeg'" 
+		ng-model="fileToUpload" type="file" multiple=false ngf-select="uploadFile(fileToUpload)">
+	</div>
+</body>
+</html>
