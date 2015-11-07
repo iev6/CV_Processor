@@ -2,9 +2,7 @@ var app = angular.module('myApp',['ngFileUpload']);
 
 app.controller('myCtrl', function($scope,Upload){
 	$scope.responsiveVoice = responsiveVoice;
-
 	$scope.uploadFile = function(file){
-		token = 0;
 		file.upload = Upload.upload({
 			url : '',
 			method : 'POST', 
@@ -23,7 +21,8 @@ app.controller('myCtrl', function($scope,Upload){
 		file.upload
 		.then(function(response){
 			$scope.text = response.data.output.join(' ');
-			$scope.responsiveVoice.speak($scope.text, "UK English Male");
+			console.log($scope.text);
+			$scope.responsiveVoice.speak($scope.text, "UK English Female");
 		}, function(err){
 			console.log(err);
 		});
