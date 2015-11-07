@@ -22,8 +22,7 @@ app.controller('myCtrl', function($scope,Upload){
 
 		file.upload
 		.then(function(response){
-			$scope.text = response.output.join(' ');
-			console.log(text);
+			$scope.text = response.data.output.join(' ');
 			$scope.responsiveVoice.speak($scope.text, "UK English Male");
 		}, function(err){
 			console.log(err);
