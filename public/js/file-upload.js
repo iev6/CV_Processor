@@ -36,17 +36,17 @@ app.controller('myCtrl', function($scope,Upload){
 		});
 	};
 	$scope.uploadSampleImage = function(link){
+		file = {}
 		file.upload = Upload.upload({
 			url : '',
 			method : 'POST', 
 			headers : {
 				'Content-Type' : 'multipart/form-data',
 			}, 
-			fileFormDataName : 'uploadedFile',
 			fields : {
 				'__type__' : 'SEE_SHARP',
 				'__model_name__' : 'eng',
-				'__path__' : link
+				'__sample_path__' : link
 			},
 			sendFieldAs : 'form'
 		});

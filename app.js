@@ -64,9 +64,10 @@ app.post('/', function (req, res) {
 		debugger;
 		var CURRENT_HOME = settings.CURRENT_HOME;
 		var imgLocation, imgName;
-		if(req.body.__sample__path__) {
-			imgLocation = CURRENT_HOME + "public/" + req.body.__sample__path__;
-			imgName = req.body.__sample__path__.split('/')[1];
+		if(req.body.__sample_path__) {
+			debugger;
+			imgLocation = CURRENT_HOME + "public/" + req.body.__sample_path__;
+			imgName = req.body.__sample_path__.split('/')[1];
 		}
 		else {
 			imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
