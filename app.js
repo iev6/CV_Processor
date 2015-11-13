@@ -64,10 +64,13 @@ app.post('/', function (req, res) {
 		debugger;
 		var CURRENT_HOME = settings.CURRENT_HOME;
 		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
+		var imgName = req.files.uploadedFile.name;
+		var imgPrefix = CURRENT_HOME + "public/uploads/";
+		var outputPrefix = CURRENT_HOME + "public/output/";
 		var langModelName = req.body.__model_name__;
 		var seeSharpLocation = "/home/ubuntu/SeeSharpNative/seesharp";
 
-		util.textifyImage(imgLocation, langModelName, seeSharpLocation).then(function(result) {
+		util.textifyImage(imgLocation, imgName, outputPrefix, langModelName, seeSharpLocation).then(function(result) {
 			console.log(result);
 			debugger;
 			res.send(JSON.stringify({ result : true, output : result }));

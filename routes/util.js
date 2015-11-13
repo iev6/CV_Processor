@@ -3,14 +3,20 @@ var shellExecLine = function(cmdLine) {
 	return exec(cmdLine);
 }
 
-var textifyImage = function(imgLocation, langModelName, seeSharpLocation) {
-	var line1 = seeSharpLocation + " " + imgLocation;
-	// console.log(line1);
+var textifyImage = function(imgLocation, imgName, outputPrefix, langModelName, seeSharpLocation) {
+	var out1 = imgName.split('.')[0] + "_dec." + imgName.split('.')[1];
+	var out2 = imgName.split('.')[0] + "_seg." + imgName.split('.')[1];
+	var out3 = imgName.split('.')[0] + "_rec." + imgName.split('.')[1];
+	debugger;
+	var line1 = seeSharpLocation + " " + imgLocation + " " + outputPrefix + out1 + " " + outputPrefix +  out2 + " " + outputPrefix + out3;
+	var sLP = "http://54.169.241.197:3000/output/";
+	console.log(line1);
+	debugger;
 	return shellExecLine(line1).then(function(result) {
 		debugger;
 		var output = result.stdout.split('\n');	
 		output = output.filter(Boolean);
-		return output;
+		return {text:output, out1:sLP+out1, out2:sLP+out2, out3:sLP+out3};
 	});
 }
 
