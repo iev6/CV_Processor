@@ -63,8 +63,15 @@ app.post('/', function (req, res) {
 	else if(req.body.__type__ == 'SEE_SHARP') {
 		debugger;
 		var CURRENT_HOME = settings.CURRENT_HOME;
-		var imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
-		var imgName = req.files.uploadedFile.name;
+		var imgLocation, imgName;
+		if(req.body.__sample__path__) {
+			imgLocation = CURRENT_HOME + "public/" + req.body.__sample__path__;
+			imgName = req.body.__sample__path__.split('/')[1];
+		}
+		else {
+			imgLocation = CURRENT_HOME + "public/uploads/" + req.files.uploadedFile.name;
+			imgName = req.files.uploadedFile.name;
+		}
 		var imgPrefix = CURRENT_HOME + "public/uploads/";
 		var outputPrefix = CURRENT_HOME + "public/output/";
 		var langModelName = req.body.__model_name__;

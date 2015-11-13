@@ -2,18 +2,33 @@
 <head>
 	<script src="js/angular.min.js"></script>
 	<script src="js/ng-file-upload.min.js"></script>
-<script type="text/javascript" src="https://rawgithub.com/hiddentao/google-tts/master/google-tts.min.js"></script>
-    <script src="js/ng-file-upload-shim.min.js"></script>
-    <script src="js/file-upload.js"></script>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+	<script type="text/javascript" src="https://rawgithub.com/hiddentao/google-tts/master/google-tts.min.js"></script>
+	<script src="js/ng-file-upload-shim.min.js"></script>
+	<script src="js/file-upload.js"></script>
+	<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body ng-app="myApp">
 	<div ng-controller="myCtrl">
-		<div ng-repeat="link in imageLinks">
-			<img ng-src="{{link}}" width="300" height="300" padding="20">
-		</div>
+		<center>
+			<div ng-repeat="link in imageLinks">
+				<img style="margin:5;cursor:pointer" ng-click="uploadSampleImage(link)" class="row col-lg-2" ng-src="{{link}}" width="150" height="150"></img>
+			</div>
+		</center>
 		<input id="file-input" ngf-max-size="20MB" ngf-pattern="'.jpeg'" 
 		ng-model="fileToUpload" type="file" multiple=false ngf-select="uploadFile(fileToUpload)">
+		<div ng-show="outputVis">
+			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out1}}" width="150" height="150"></img>
+			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out2}}" width="150" height="150"></img>
+			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out3}}" width="150" height="150"></img>
+		</div>
 	</div>
 </body>
 </html>
