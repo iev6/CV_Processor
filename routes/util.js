@@ -9,7 +9,7 @@ var textifyImage = function(imgLocation, imgName, outputPrefix, langModelName, s
 	var out3 = imgName.split('.')[0] + "_rec." + imgName.split('.')[1];
 	debugger;
 	var line1 = seeSharpLocation + " " + imgLocation + " " + outputPrefix + out1 + " " + outputPrefix +  out2 + " " + outputPrefix + out3;
-	var sLP = "http://54.169.241.197:3000/output/";
+	var sLP = "output/"; //"http://54.169.241.197:3000/output/";
 	console.log(line1);
 	debugger;
 	return shellExecLine(line1).then(function(result) {

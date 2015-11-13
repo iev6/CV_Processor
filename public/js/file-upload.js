@@ -2,6 +2,14 @@ var app = angular.module('myApp',['ngFileUpload']);
 
 app.controller('myCtrl', function($scope,Upload){
 	$scope.responsiveVoice = responsiveVoice;
+	$scope.imageLinks = [
+		"images/scenetext01.jpg",
+		"images/scenetext02.jpg",
+		"images/scenetext03.jpg",
+		"images/scenetext04.jpg",
+		"images/scenetext05.jpg",
+		"images/scenetext06.jpg"
+	]
 	$scope.uploadFile = function(file){
 		file.upload = Upload.upload({
 			url : '',
@@ -20,7 +28,7 @@ app.controller('myCtrl', function($scope,Upload){
 
 		file.upload
 		.then(function(response){
-			$scope.text = response.data.output.join(' ');
+			$scope.text = response.data.output.text.join(' ');
 			console.log($scope.text);
 			$scope.responsiveVoice.speak($scope.text, "UK English Female");
 		}, function(err){

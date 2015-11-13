@@ -9,6 +9,9 @@
 </head>
 <body ng-app="myApp">
 	<div ng-controller="myCtrl">
+		<div ng-repeat="link in imageLinks">
+			<img ng-src="{{link}}" width="300" height="300" padding="20">
+		</div>
 		<input id="file-input" ngf-max-size="20MB" ngf-pattern="'.jpeg'" 
 		ng-model="fileToUpload" type="file" multiple=false ngf-select="uploadFile(fileToUpload)">
 	</div>
