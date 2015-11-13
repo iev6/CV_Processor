@@ -9,6 +9,8 @@ app.controller('myCtrl', function($scope,Upload){
 	"images/scenetext04.jpg",
 	"images/scenetext05.jpg"
 	]
+	$scope.outputVis = false;
+
 	$scope.uploadFile = function(file){
 		file.upload = Upload.upload({
 			url : '',
@@ -55,6 +57,7 @@ app.controller('myCtrl', function($scope,Upload){
 		.then(function(response){
 			$scope.text = response.data.output.text.join(' ');
 			$scope.response = response.data.output;
+			$scope.outputVis = true;
 			console.log($scope.text);
 			$scope.responsiveVoice.speak($scope.text, "UK English Female");
 		}, function(err){
