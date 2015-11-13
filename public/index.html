@@ -17,17 +17,30 @@
 </head>
 <body ng-app="myApp">
 	<div ng-controller="myCtrl">
+		<h1><center>See Sharp Online demo</h1>
+		<h4><p style="padding:20; margin-left:60">
+			See Sharp is a bot which reads out text in an image. It is built for the Able contest conducted by Goldman Sachs.
+		</p>
+		</h4>
+		<h4><p style="padding:20"> You can upload an image </p></h4>	
 		<center>
-			<div ng-repeat="link in imageLinks">
-				<img style="margin:5;cursor:pointer" ng-click="uploadSampleImage(link)" class="row col-lg-2" ng-src="{{link}}" width="150" height="150"></img>
+			<div style="padding:100">
+				<input id="file-input" ngf-max-size="20MB" ngf-pattern="'.jpeg'" 
+				ng-model="fileToUpload" type="file" multiple=false ngf-select="uploadFile(fileToUpload)">
 			</div>
 		</center>
-		<input id="file-input" ngf-max-size="20MB" ngf-pattern="'.jpeg'" 
-		ng-model="fileToUpload" type="file" multiple=false ngf-select="uploadFile(fileToUpload)">
+		<h4><p style="padding:20"> Or you can try one of our sample images. </p></h4>
+		<div ng-repeat="link in imageLinks">
+			<img style="margin:5;cursor:pointer" ng-click="uploadSampleImage(link)" class="row col-lg-2" ng-src="{{link}}" width="150" height="150"></img>
+		</div>
+		<br><br><br><br><br>
+		<div class="row" style="height:60"></div>
 		<div ng-show="outputVis">
-			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out1}}" width="150" height="150"></img>
-			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out2}}" width="150" height="150"></img>
-			<img style="margin:5" class="row col-lg-3" ng-src="{{response.out3}}" width="150" height="150"></img>
+			<h4><p style="padding:20;"> Output </p></h4>
+			<div class="row col-lg-2"></div>
+			<img style="margin:5" class="row col-lg-2" ng-src="{{response.out1}}" width="150" height="150"></img>
+			<img style="margin:5" class="row col-lg-2" ng-src="{{response.out2}}" width="150" height="150"></img>
+			<img style="margin:5" class="row col-lg-2" ng-src="{{response.out3}}" width="150" height="150"></img>
 		</div>
 	</div>
 </body>
